@@ -253,10 +253,10 @@ plot(mean(Sb)*ones(1,6),'color','b');
 plot(mean(SEmax)*ones(1,6),'color','r');
 
 %%
-D2=5;
-D3=12.12;
-f10=2.5936; %3.19;
-f20=-4.0416; %-4.33;
+D2=5;% QS 1 to QS 2
+D3=12.12; % QS 2 to screen
+f10=2.5936; %3.19; % focal of QS1
+f20=-4.0416; %-4.33; 
 eta_dipole_0 = -55e-3;
 
     

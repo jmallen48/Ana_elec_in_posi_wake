@@ -92,7 +92,7 @@ plot_process = 0;
 plot_fullBETAL = 0;
 
 % Choose laser on or off data
-laser_on_off = 0;
+laser_on_off = 1    ;
 
 if laser_on_off == 1
     laser = find(laser_status);  % define laser on indices. laser status already uses common UIDs
@@ -175,7 +175,8 @@ for i = 1:nstep
     DIFFTORO{i} = zeros(numel(step_ind{i}));
     PYRO{i} = zeros(numel(step_ind{i}));
     BETAL_charge{i} = zeros(numel(step_ind{i}));
-    B5D36_BDES = step_value(step_ind{i}(1));
+    % B5D36_BDES = step_value(step_ind{i}(1));
+    B5D36_BDES = 1;
     spectrum_median{i} = zeros(zoom_height);
     spectrum_mean{i} = zeros(zoom_height);
     
@@ -204,7 +205,7 @@ for i = 1:nstep
         end
         BETAL_zoom = image(roi.top:roi.bottom,roi.left:roi.right);
         BETAL_process = image(roi.top:roi.bottom+height,roi.left-width:roi.right+width); % Outer border of roi used to process
-        BETAL_process = medfilt2(BETAL_process,[15 15]); % Median filter
+        BETAL_process = medfilt2(BETAL_process,[3 3]); % Median filter
         
         % Process BetaL images
         for k=1:zoom_height+10-(process_height-1)
@@ -288,7 +289,7 @@ for i = 1:nstep
             end
             set(findobj(gcf,'type','axes'),'FontSize',14);
             
-            pause();
+            pause(0.1);
             
             if getappdata(h,'canceling') % Check if cancel button clicked on
                 delete(h);
